@@ -5,25 +5,20 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
 import requests
 
-from flask_migrate import Migrate
+
+
 
 app = Flask(__name__)
 
 # connect to db
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@db/main' # format --> 'type_of_db://db_user:db_password@db_name/table'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # configure CORS
 CORS(app)
 
 # instantiate DB
 db = SQLAlchemy(app)
-
-
-migrate = Migrate(app, db)
-
-# # manage migrations 
-# migrate = Migrate()
-# migrate.init_app(app, db)
 
 
 # create models

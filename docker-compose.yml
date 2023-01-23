@@ -4,13 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     command: 'python main.py'
     ports:
       - 8001:5000
     volumes:
       - .:/app
     depends_on:
-      - db_producto_main
+      - db
 
   # queue:
   #   build:
@@ -20,7 +21,7 @@ services:
   #   depends_on:
   #     - db
 
-  db_producto_main:
+  db:
     image: mysql:5.7.22
     restart: always
     environment:
